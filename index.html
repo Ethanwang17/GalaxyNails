@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Galaxy Nails - Your Premium Nail Salon</title>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<header class="header">
+			<nav class="nav-container">
+				<div class="logo">Galaxy Nails and Spa</div>
+				<div class="nav-links">
+					<a href="index.html" class="active">Home</a>
+					<a href="menu.html">Services</a>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero">
+				<div class="hero-content">
+					<h1>Galaxy Nails and Spa</h1>
+					<p>
+						Conveniently located in Beaverton Town Square, our salon offers a wide range of professional nail services, including classic manicures, deluxe pedicures, expert cuticle care, soothing massages, and hot towel therapy leaving your hands and feet feeling refreshed and rejuvenated. 
+					<p>
+						Our skilled technicians are dedicated to providing top-quality services ensuring you leave feeling relaxed and confident. Experience the ultimate pampering in a soothing atmosphere and call to book your appointment today!					</p>
+					</p>
+					<div class="cta-container">
+						<a href="menu.html" class="cta-button">SERVICES <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16" style="margin-left: 8px; vertical-align: middle;">
+							<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+						</svg></a>
+						<a href="tel:5036262404" class="cta-button outline">MAKE A CALL <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16" style="margin-left: 8px; vertical-align: middle;">
+							<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+						</svg></a>
+					</div>
+				</div>
+			</section>
+
+			<section class="carousel-container">
+				<div class="carousel">
+					<div class="carousel-slide">
+						<img src="images/salon2.JPG" alt="Salon Image 2" />
+					</div>
+					<div class="carousel-slide">
+						<img src="images/salon3.JPG" alt="Salon Image 3" />
+					</div>
+					<div class="carousel-slide">
+						<img src="images/salon4.JPG" alt="Salon Image 4" />
+					</div>
+				</div>
+				<button class="carousel-button prev">❮</button>
+				<button class="carousel-button next">❯</button>
+				<div class="carousel-dots"></div>
+				<script>
+					document.addEventListener("DOMContentLoaded", () => {
+						const carousel = document.querySelector(".carousel");
+						const slides =
+							document.querySelectorAll(".carousel-slide");
+						const dotsContainer =
+							document.querySelector(".carousel-dots");
+						const prevButton = document.querySelector(
+							".carousel-button.prev"
+						);
+						const nextButton = document.querySelector(
+							".carousel-button.next"
+						);
+						let currentSlide = 0;
+						let autoAdvanceTimer;
+
+						// Create dots
+						slides.forEach((_, index) => {
+							const dot = document.createElement("span");
+							dot.classList.add("carousel-dot");
+							if (index === 0) dot.classList.add("active");
+							dot.addEventListener("click", () => {
+								goToSlide(index);
+								resetTimer();
+							});
+							dotsContainer.appendChild(dot);
+						});
+
+						const dots = document.querySelectorAll(".carousel-dot");
+
+						function updateSlides() {
+							slides.forEach((slide, index) => {
+								slide.style.transform = `translateX(${
+									100 * (index - currentSlide)
+								}%)`;
+							});
+							dots.forEach((dot, index) => {
+								dot.classList.toggle(
+									"active",
+									index === currentSlide
+								);
+							});
+						}
+
+						function goToSlide(n) {
+							currentSlide = (n + slides.length) % slides.length;
+							updateSlides();
+						}
+
+						function nextSlide() {
+							goToSlide(currentSlide + 1);
+						}
+
+						function prevSlide() {
+							goToSlide(currentSlide - 1);
+						}
+
+						function resetTimer() {
+							clearInterval(autoAdvanceTimer);
+							autoAdvanceTimer = setInterval(nextSlide, 5000);
+						}
+
+						// Event listeners
+						prevButton.addEventListener("click", () => {
+							prevSlide();
+							resetTimer();
+						});
+						nextButton.addEventListener("click", () => {
+							nextSlide();
+							resetTimer();
+						});
+
+						// Initial setup
+						updateSlides();
+						resetTimer();
+					});
+				</script>
+			</section>
+
+			<section class="contact">
+				<h2>Visit Us</h2>
+				<h4 style="margin-top: -10px">Walk-ins are Welcome</h4>
+				<div class="contact-info">
+					<p>
+						<a
+							href="https://maps.google.com/?q=11797+SW+Beaverton+Hillsdale+Hwy,+Beaverton,+OR+97005"
+							target="_blank"
+							>11797 SW Beaverton Hillsdale Hwy, Beaverton, OR
+							97005</a
+						>
+					</p>
+					<p><a href="tel:5036262404">(503) 626-2404</a></p>
+					<p>Mon-Fri: 10:00 AM - 7:00 PM</p>
+					<p>Saturday: 9:00 AM - 6:00 PM</p>
+					<p>Sunday: 11:00 AM - 5:00 PM</p>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2025 Galaxy Nails. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
